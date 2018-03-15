@@ -1,0 +1,16 @@
+$margins: 2.5%;
+form{
+	
+	table{
+
+		td{
+			input{
+				margin:$margins;
+				width:95%;
+			}
+			.elgg-input-date{
+				padding:10px !important;
+			}
+		}
+	}
+}
