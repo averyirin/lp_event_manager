@@ -138,6 +138,8 @@
 				array_push($guidArray, $e["guid"]);
 		}
 
+		$_SESSION['eventEntities'] = $guidArray;
+
 		$result = array(
 			"entities" 	=> $entities,
 			"count" 	=> $count_entities,

@@ -123,7 +123,7 @@
 	$returnData['valid'] = 1;
 
 	$returnData['offset'] = $offset;
-	$_SESSION['eventEntities'] = $entities["guids"];
+	
 	echo json_encode($returnData);
 
 	exit;
