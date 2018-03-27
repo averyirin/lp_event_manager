@@ -1,16 +1,16 @@
 <?php
 
 	$title_text = elgg_echo("event_manager:list:searchevents");
-	
+
 	$event_options = array();
-	
+
 	if(($page_owner = elgg_get_page_owner_entity()) && ($page_owner instanceof ElggGroup)){
 		group_gatekeeper();
-		
+
 		elgg_push_breadcrumb($page_owner->name);
-		
+
 		$event_options["container_guid"] = $page_owner->getGUID();
-		
+
 		$who_create_group_events = elgg_get_plugin_setting('who_create_group_events', 'event_manager'); // group_admin, members
 		if((($who_create_group_events == "group_admin") && $page_owner->canEdit()) || (($who_create_group_events == "members") && $page_owner->isMember($user))){
 			elgg_register_menu_item('title', array(
@@ -31,23 +31,24 @@
 								));
 		}
 	}
-	
+
 	$events = event_manager_search_events($event_options);
-	
+
 	$entities = $events["entities"];
 	$count = $events["count"];
-	
+
 	$form = elgg_view("event_manager/forms/event/search");
-	
+
 	$result = elgg_view("event_manager/search_result", array("entities" => $entities, "count" => $count));
+
+  $_SESSION['eventEntities'] = $entities;
 	
 	$content = 	$form . $result;
-	
+
 	$body = elgg_view_layout('content', array(
 		'filter' => '',
 		'content' => $content,
 		'title' => $title_text,
 	));
-	
+
 	echo elgg_view_page($title_text, $body);
-	
