@@ -41,8 +41,8 @@
 
 	$result = elgg_view("event_manager/search_result", array("entities" => $entities, "count" => $count));
 
-  $_SESSION['eventEntities'] = $entities;
-	
+  $_SESSION['eventEntities'] = $events["guids"];
+
 	$content = 	$form . $result;
 
 	$body = elgg_view_layout('content', array(
